@@ -1,0 +1,116 @@
+1️⃣ Installation de Cubic
+Cubic (Custom Ubuntu ISO Creator) est un outil qui permet de modifier une image ISO.
+
+Étape 1 : Ajouter le dépôt de Cubic
+Dans un terminal, exécute ces commandes pour ajouter le dépôt et installer Cubic :
+
+bash
+Copier
+Modifier
+sudo apt-add-repository ppa:cubic-wizard/release
+sudo apt update && sudo apt install cubic -y
+Étape 2 : Préparer un dossier de travail
+Crée un dossier pour stocker les fichiers temporaires et ISO :
+
+bash
+Copier
+Modifier
+mkdir -p ~/Documents/mon-DVD
+C’est ici que nous allons décompresser et modifier l’ISO.
+
+Étape 3 : Monter l’ISO
+On crée un point de montage pour notre image ISO :
+
+bash
+Copier
+Modifier
+sudo mkdir /mnt/dvd
+sudo chown $USER:$USER /mnt/dvd
+Puis, place ton fichier ISO source dans ce dossier.
+
+2️⃣ Modifier l’ISO avec Cubic
+Étape 1 : Lancer Cubic
+Dans un terminal, exécute :
+
+bash
+Copier
+Modifier
+cubic
+L’interface graphique de Cubic s’ouvre.
+
+Étape 2 : Sélectionner l’image de base
+Indique le dossier de travail ~/Documents/mon-DVD.
+
+Sélectionne ton fichier ISO (ex: linuxmint.iso).
+
+Cubic va extraire le contenu de l’ISO et ouvrir un terminal.
+
+Étape 3 : Personnaliser le Live CD
+Dans le terminal de Cubic, tu peux :
+
+Ajouter des outils utiles à la récupération et au diagnostic :
+
+bash
+Copier
+Modifier
+sudo apt install chntpw nmap net-tools htop
+chntpw : permet de réinitialiser les mots de passe Windows.
+
+nmap : outil de scan réseau.
+
+net-tools : inclut ifconfig, netstat, etc.
+
+htop : moniteur système avancé.
+
+Désinstaller les logiciels inutiles :
+
+bash
+Copier
+Modifier
+sudo apt remove libreoffice* thunderbird*
+Cela permet d’alléger l’ISO.
+
+Vérifier et lister les paquets installés :
+
+bash
+Copier
+Modifier
+apt list --installed
+Pour plus d’infos sur un paquet :
+
+bash
+Copier
+Modifier
+apt show <nom_du_paquet>
+Étape 4 : Sauvegarder les modifications
+Clique sur Next pour valider.
+
+Tu pourras encore supprimer d’autres paquets avant de finaliser.
+
+3️⃣ Création de l’image ISO
+Étape 1 : Configuration de l’ISO
+Sélectionne un mode de démarrage adapté (ex: mode UEFI & Legacy pour compatibilité maximale).
+
+Sélectionne le niveau de compression souhaité (recommandé : XZ pour un bon compromis entre taille et vitesse).
+
+Étape 2 : Finalisation
+Clique sur Next pour lancer la génération de l’ISO modifié.
+
+Attends que la création se termine.
+
+4️⃣ Tester l’ISO
+Option 1 : Tester dans une VM
+Tu peux tester ton Live CD en l’exécutant dans VirtualBox ou VMware :
+
+Monte l’ISO dans la VM.
+
+Démarre en mode Live.
+
+Option 2 : Graver sur une clé USB
+Si tu veux tester sur une vraie machine :
+
+bash
+Copier
+Modifier
+sudo dd if=~/Documents/mon-DVD/output.iso of=/dev/sdX bs=4M status=progress
+(Remplace /dev/sdX par le bon périphérique USB que tu peux identifier avec lsblk).
