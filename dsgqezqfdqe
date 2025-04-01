@@ -18,6 +18,11 @@ Modifier
 New-LocalUser -Name "user1" -Password (ConvertTo-SecureString "P@ssword1" -AsPlainText -Force) -FullName "Tux1" -Description "Utilisateur 1"
 New-LocalUser -Name "user2" -Password (ConvertTo-SecureString "P@ssword2" -AsPlainText -Force)
 New-LocalUser -Name "user3" -Password (ConvertTo-SecureString "P@ssword3" -AsPlainText -Force) -UserMayChangePassword $false -AccountNeverExpires $true
+# Création de user3
+New-LocalUser -Name "user3" -Password (ConvertTo-SecureString "P@ssword3" -AsPlainText -Force)
+
+# Désactiver la possibilité de changer le mot de passe et activer "ne jamais expirer"
+net user user3 /Passwordchg:no /Expires:never
 Attribuer les groupes aux utilisateurs :
 
 powershell
