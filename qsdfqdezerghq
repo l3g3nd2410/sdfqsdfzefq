@@ -114,3 +114,52 @@ Copier
 Modifier
 sudo dd if=~/Documents/mon-DVD/output.iso of=/dev/sdX bs=4M status=progress
 (Remplace /dev/sdX par le bon périphérique USB que tu peux identifier avec lsblk).
+
+-----------------------------------
+
+📌 Étape 1 : Ajouter le dépôt à APT
+Ouvre un terminal et entre cette commande :
+
+bash
+Copier
+Modifier
+echo "deb http://ppa.launchpad.net/cubic-wizard/release/ubuntu $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/cubic-wizard-release.list
+🔹 Cela va créer un fichier de dépôt dans /etc/apt/sources.list.d/.
+🔹 $(lsb_release -sc) récupère automatiquement ta version d’Ubuntu (ex: focal pour 20.04).
+
+📌 Étape 2 : Ajouter la clé GPG
+APT doit faire confiance au PPA. Ajoute la clé avec :
+
+bash
+Copier
+Modifier
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 531EE72F4C9D234C
+Si la commande apt-key ne fonctionne pas, essaie cette alternative :
+
+bash
+Copier
+Modifier
+sudo mkdir -p /etc/apt/keyrings
+sudo gpg --no-default-keyring --keyring /etc/apt/keyrings/cubic-wizard.gpg --keyserver keyserver.ubuntu.com --recv-keys 531EE72F4C9D234C
+echo "deb [signed-by=/etc/apt/keyrings/cubic-wizard.gpg] http://ppa.launchpad.net/cubic-wizard/release/ubuntu $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/cubic-wizard-release.list
+📌 Étape 3 : Mettre à jour APT
+bash
+Copier
+Modifier
+sudo apt update
+Vérifie qu’il n’y a pas d’erreur, surtout des erreurs "NO_PUBKEY" (clé manquante).
+
+📌 Étape 4 : Installer Cubic
+Si tout est bon, installe Cubic avec :
+
+bash
+Copier
+Modifier
+sudo apt install cubic -y
+📌 Étape 5 : Vérifier l’installation
+Lance Cubic pour voir s'il est bien installé :
+
+bash
+Copier
+Modifier
+cubic
