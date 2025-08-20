@@ -21,7 +21,7 @@ local function AntiBan()
     -- Fond arrondi
     local bg = Instance.new("Frame")
     bg.Size = UDim2.new(1, 0, 1, 0)
-    bg.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+    bg.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     bg.Parent = button
 
     local corner = Instance.new("UICorner")
