@@ -10,7 +10,7 @@ local function AntiBan()
     -- Conteneur bouton
     local button = Instance.new("TextButton")
     button.Name = "VoiceButton"
-    button.Size = UDim2.new(0, 107, 0, 33)
+    button.Size = UDim2.new(0, 130, 0, 42)
     button.Position = UDim2.new(0, 15, 0, 15)
     button.BackgroundTransparency = 1 -- transparent, on mettra un frame comme fond
     button.AutoButtonColor = false
@@ -26,14 +26,6 @@ local function AntiBan()
     local corner = Instance.new("UICorner")
     corner.CornerRadius = UDim.new(0, 20)
     corner.Parent = bg
-    
-    local gradient = Instance.new("UIGradient")
-    gradient.Color = ColorSequence.new({
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(60, 60, 60)),
-        ColorSequenceKeypoint.new(1, Color3.fromRGB(150, 150, 150))
-    })
-    gradient.Rotation = 90
-    gradient.Parent = bg
     
     -- Texte par-dessus
     local text = Instance.new("TextLabel")
