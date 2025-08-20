@@ -1,6 +1,4 @@
 local function AntiBan()
-    local VoiceChatService = game:GetService("VoiceChatService")
-    
     print("✅ Script VoiceChat Auto-Rejoin lancé !")
     
     local lastLog = tick()
@@ -8,7 +6,7 @@ local function AntiBan()
     while true do
         task.wait()
         pcall(function()
-            VoiceChatService:JoinVoice()
+            game:GetService("VoiceChatService"):joinVoice()
         end)
     
         if tick() - lastLog >= 5 then
