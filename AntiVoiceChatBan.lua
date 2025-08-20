@@ -15,15 +15,7 @@ local function AntiBan()
     -- Vérifie et notifie si déco
     local function checkVoice()
     	if isEligible() then
-    		-- On tente juste un joinVoice() pour être sûr qu'il est dans le canal
-    		local ok, err = pcall(function()
-    			VoiceChatService:joinVoice()
-    		end)
-    		if ok then
-    			print("🎤 Voice Chat actif (eligible & joinVoice OK)")
-    		else
-    			warn("⚠️ Voice Chat inactif ! Erreur joinVoice :", err)
-    		end
+    		print("🎤 Voice Chat actif (eligible & joinVoice OK)")
     	else
     		warn("❌ Voice Chat non disponible pour ce joueur (pas eligible)")
             VoiceChatService:joinVoice()
