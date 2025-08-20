@@ -35,7 +35,8 @@ local function AntiBan()
     text.Text = "🎤 Deban VC"
     text.TextColor3 = Color3.fromRGB(255, 255, 255)
     text.Font = Enum.Font.GothamBold
-    text.TextScaled = true
+    text.TextScaled = false
+    text.TextSize = 20
     text.ZIndex = 2
     text.Parent = button
 
@@ -77,9 +78,9 @@ local function AntiBan()
         lbl.Parent = n
 
         -- Fade in
-        TweenService:Create(n, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.1}):Play()
-        TweenService:Create(lbl, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-        TweenService:Create(stroke, TweenInfo.new(0.25), {Transparency = 0.5}):Play()
+        TweenService:Create(n, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.1}):Play()
+        TweenService:Create(lbl, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
+        TweenService:Create(stroke, TweenInfo.new(1), {Transparency = 0.5}):Play()
 
         task.delay(0.25 + showTime, function()
             -- Fade out
