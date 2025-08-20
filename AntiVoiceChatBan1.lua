@@ -8,7 +8,6 @@ local function AntiBan()
     screenGui.ResetOnSpawn = false
     screenGui.Parent = player:WaitForChild("PlayerGui")
 
-    -- Conteneur bouton
     local button = Instance.new("TextButton")
     button.Name = "VoiceButton"
     button.Size = UDim2.new(0, 130, 0, 42)
@@ -18,17 +17,15 @@ local function AntiBan()
     button.Text = ""
     button.Parent = screenGui
 
-    -- Fond arrondi
     local bg = Instance.new("Frame")
     bg.Size = UDim2.new(1, 0, 1, 0)
-    bg.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    bg.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
     bg.Parent = button
 
     local corner = Instance.new("UICorner")
     corner.CornerRadius = UDim.new(0, 20)
     corner.Parent = bg
 
-    -- Texte par-dessus
     local text = Instance.new("TextLabel")
     text.Size = UDim2.new(1, 0, 1, 0)
     text.BackgroundTransparency = 1
@@ -40,7 +37,6 @@ local function AntiBan()
     text.ZIndex = 2
     text.Parent = button
 
-    -- Fonction : afficher une notification centrée avec fade-in/fade-out
     local function showCenterNotification(msg, showTime)
         showTime = showTime or 1.5
 
@@ -50,7 +46,7 @@ local function AntiBan()
         n.Position = UDim2.new(0.5, 0, 0.5, 0)
         n.Size = UDim2.new(0, 260, 0, 60)
         n.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-        n.BackgroundTransparency = 1 -- start invisible
+        n.BackgroundTransparency = 1
         n.Parent = screenGui
         n.ZIndex = 50
 
@@ -60,7 +56,7 @@ local function AntiBan()
 
         local stroke = Instance.new("UIStroke")
         stroke.Thickness = 1
-        stroke.Transparency = 1 -- start invisible
+        stroke.Transparency = 1
         stroke.Color = Color3.fromRGB(255, 255, 255)
         stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
         stroke.Parent = n
@@ -69,21 +65,20 @@ local function AntiBan()
         lbl.BackgroundTransparency = 1
         lbl.Size = UDim2.new(1, -20, 1, -12)
         lbl.Position = UDim2.new(0, 10, 0, 6)
-        lbl.Text = msg or "test notification"
+        lbl.Text = msg or "✅ VoiceChat re connecté"
         lbl.TextColor3 = Color3.fromRGB(255, 255, 255)
-        lbl.TextTransparency = 1 -- start invisible
+        lbl.TextTransparency = 1
         lbl.Font = Enum.Font.GothamSemibold
         lbl.TextScaled = true
         lbl.ZIndex = 51
         lbl.Parent = n
 
-        -- Fade in
         TweenService:Create(n, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.1}):Play()
         TweenService:Create(lbl, TweenInfo.new(1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
         TweenService:Create(stroke, TweenInfo.new(1), {Transparency = 0.5}):Play()
 
         task.delay(0.25 + showTime, function()
-            -- Fade out
+
             local t1 = TweenService:Create(n, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {BackgroundTransparency = 1})
             local t2 = TweenService:Create(lbl, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {TextTransparency = 1})
             local t3 = TweenService:Create(stroke, TweenInfo.new(0.25), {Transparency = 1})
@@ -93,7 +88,6 @@ local function AntiBan()
         end)
     end
 
-    -- Action clic
     button.MouseButton1Click:Connect(function()
         print("✅ VoiceChat re connecté")
         pcall(function() game:GetService("VoiceChatService"):joinVoice() end)
