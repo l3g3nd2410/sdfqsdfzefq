@@ -19,7 +19,7 @@ local function AntiBan()
 
     local bg = Instance.new("Frame")
     bg.Size = UDim2.new(1, 0, 1, 0)
-    bg.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+    bg.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     bg.Parent = button
 
     local corner = Instance.new("UICorner")
@@ -91,7 +91,7 @@ local function AntiBan()
     button.MouseButton1Click:Connect(function()
         print("✅ VoiceChat re connecté")
         pcall(function() game:GetService("VoiceChatService"):joinVoice() end)
-        showCenterNotification("test notification", 1.5)
+        showCenterNotification("✅ VoiceChat re connecté", 1.5)
     end)
 end
 
